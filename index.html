@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Fiscalize Aqui - Bairro Ativo (ODS 16)</title>
+    <meta name="description" content="Plataforma de cidadania ativa para reportar e acompanhar problemas de infraestrutura no seu bairro, promovendo a transparência e instituições eficazes (ODS 16).">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap">
+    
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+    
+    <header>
+        <div class="logo">
+            <h3>FISCALIZE AQUI</h3>
+        </div>
+        <nav>
+    <a href="#inicio">Início</a>
+    <a href="#ocorrencias">Reportar</a>
+    <a href="#acompanhamento">Acompanhamento</a>
+    <a href="relatos.html">Relatos de Impacto</a> <a href="#sobre">Sobre ODS 16</a>
+</nav>
+    </header>
+
+    <section class="hero" id="inicio">
+        <h1>Fiscalize Aqui: Bairro Ativo</h1>
+        <h3>Plataforma de Cidadania Ativa e Transparência (ODS 16).</h3>
+        <p>Seu canal direto para reportar problemas de infraestrutura e acompanhar a solução pelas autoridades.</p>
+        <a href="#ocorrencias">REPORTAR UMA OCORRÊNCIA AGORA</a>
+    </section>
+
+    <section id="tipos-ocorrencias">
+        <h2>Tipos de Ocorrências Mais Comuns</h2>
+        <div class="grid-container">
+            <div class="card">
+                <h4>🚧 Vias e Pavimentação</h4>
+                <p>Buracos, asfalto danificado, calçadas irregulares e falta de sinalização.</p>
+            </div>
+            <div class="card">
+                <h4>🗑️ Coleta e Lixo</h4>
+                <p>Acúmulo de lixo, entulho em local indevido e falha na coleta seletiva ou orgânica.</p>
+            </div>
+            <div class="card">
+                <h4>💧 Drenagem e Esgoto</h4>
+                <p>Bueiros entupidos, vazamento de água e problemas de esgoto a céu aberto.</p>
+            </div>
+            <div class="card">
+                <h4>💡 Iluminação Pública</h4>
+                <p>Postes com lâmpadas queimadas ou piscando, fiação exposta e risco elétrico.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="form-section" id="ocorrencias">
+        <h2>Reportar Ocorrência</h2>
+        <form>
+            <input type="text" placeholder="Seu Nome Completo" required>
+            <input type="email" placeholder="Seu E-mail para Contato (Opcional)">
+            
+            <select required>
+                <option value="">-- Selecione o Tipo de Problema * --</option>
+                <option value="buraco">Buraco na Rua / Asfalto Danificado</option>
+                <option value="lixo">Lixo ou Entulho Acumulado</option>
+                <option value="iluminacao">Lâmpada de Poste Queimada</option>
+                <option value="bueiro">Bueiro Entupido / Drenagem</option>
+                <option value="outro">Outro Problema de Infraestrutura</option>
+            </select>
+            
+            <input type="text" placeholder="Endereço Exato do Problema e Ponto de Referência *" required>
+            
+            <textarea placeholder="Descreva o problema com o máximo de detalhes." rows="4" required></textarea>
+            
+            <label style="display: block; margin-bottom: 15px;">
+                <input type="file" style="border: none;"> Anexar Foto (Recomendado)
+            </label>
+
+            <button type="submit">ENVIAR DENÚNCIA E GERAR PROTOCOLO</button>
+        </form>
+    </section>
+
+    <section id="acompanhamento">
+        <h2>Dashboard de Transparência (ODS 16)</h2>
+        <p>Acompanhe o status dos últimos reportes na comunidade.</p>
+        
+        <table class="status-table">
+            <thead>
+                <tr>
+                    <th>Protocolo</th>
+                    <th>Problema</th>
+                    <th>Localização</th>
+                    <th>Data</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>PRT-0048</td>
+                    <td>Lâmpada Queimada</td>
+                    <td>Rua X, nº 15</td>
+                    <td>14/11</td>
+                    <td class="em-analise">Em Análise</td>
+                </tr>
+                <tr>
+                    <td>PRT-0047</td>
+                    <td>Buraco na Rua</td>
+                    <td>Av. Principal, próx. ao 400</td>
+                    <td>10/11</td>
+                    <td class="solucionado">Solucionado</td>
+                </tr>
+                <tr>
+                    <td>PRT-0046</td>
+                    <td>Lixo Acumulado</td>
+                    <td>Esquina da Rua Z com a Rua K</td>
+                    <td>08/11</td>
+                    <td class="em-aberto">Em Aberto</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="sobre" style="background-color: #eee; text-align: center;">
+        <h2>Nosso Compromisso com o ODS 16</h2>
+        <p style="max-width: 800px; margin: 0 auto;">Este protótipo "Fiscalize Aqui" é uma solução alinhada ao **Objetivo de Desenvolvimento Sustentável 16: Paz, Justiça e Instituições Eficazes**.</p>
+        <p style="max-width: 800px; margin: 10px auto 0;">Nosso objetivo é fortalecer a voz do cidadão, exigindo **transparência** e **responsabilidade** das instituições públicas na manutenção da infraestrutura urbana.</p>
+    </section>
+
+    <footer>
+        <p style="text-align: center; margin: 0;">Protótipo desenvolvido para avaliação do 3º trimestre - ODS 16 (Paz, Justiça e Instituições Eficazes).</p>
+    </footer>
+
+</body>
+</html>
