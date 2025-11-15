@@ -338,3 +338,89 @@ footer {
 .relato-card:nth-child(3) { animation-delay: 0.6s; }
 .relato-card:nth-child(4) { animation-delay: 0.8s; }
 .relato-card:nth-child(5) { animation-delay: 1.0s; }
+/* --- CORREÇÕES DE RESPONSIVIDADE PARA CELULAR (Mobile First) --- */
+
+/* 1. CORREÇÃO GLOBAL PARA EVITAR VAZAMENTO FEIO */
+/* Tentamos esconder qualquer coisa que vaze no celular */
+body, html {
+    overflow-x: hidden;
+}
+
+/* 2. MEDIA QUERY: APLICA REGRAS APENAS PARA TELAS PEQUENAS (Celulares e alguns Tablets) */
+@media (max-width: 768px) {
+    
+    /* A. CABEÇALHO (HEADER) - Ajusta o menu para telas pequenas */
+    header {
+        flex-direction: column; /* Empilha logo e menu verticalmente */
+        text-align: center;
+        padding: 15px 5%;
+    }
+
+    header .logo {
+        margin-bottom: 10px;
+    }
+
+    nav {
+        margin-top: 5px;
+        display: flex; /* Força o menu a usar o espaço horizontal */
+        flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
+        justify-content: center;
+    }
+    
+    nav a {
+        margin: 5px 8px; /* Reduz o espaço entre os itens do menu */
+        font-size: 0.9em;
+    }
+
+    /* B. HERO SECTION */
+    .hero {
+        padding: 80px 3%; /* Reduz o padding lateral */
+    }
+    
+    .hero h1 {
+        font-size: 2em; /* Reduz o tamanho da fonte principal */
+    }
+
+    /* C. CARDS (GRID) - Força a exibição em coluna única */
+    .grid-container {
+        /* No celular, queremos que os cards ocupem toda a largura */
+        grid-template-columns: 1fr; 
+        gap: 20px; /* Reduz o espaço entre os cards */
+    }
+    
+    .card {
+        padding: 20px;
+    }
+
+    /* D. FORMULÁRIO */
+    .form-section {
+        padding: 30px 5%;
+    }
+
+    /* E. TABELAS (DASHBOARD) - Torna a tabela horizontalmente rolavel (melhor que quebrar) */
+    #acompanhamento {
+        /* Envolve a tabela em um container para que ela possa rolar horizontalmente */
+        overflow-x: auto; 
+    }
+
+    .status-table {
+        /* Garante que a tabela tenha uma largura mínima, forçando a rolagem */
+        min-width: 600px; 
+        border-spacing: 0 5px;
+    }
+    
+    .status-table th, .status-table td {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+
+    /* F. RELATOS (RELATOS.HTML) */
+    .relatos-container {
+        margin: 20px 2%; /* Reduz a margem para ocupar mais espaço na tela */
+        padding: 15px;
+    }
+
+    .relato-card {
+        padding: 15px;
+    }
+}
