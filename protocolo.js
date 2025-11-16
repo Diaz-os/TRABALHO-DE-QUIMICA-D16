@@ -7,6 +7,7 @@ function gerarProtocoloPDF(event) {
     event.preventDefault();
 
     // 1. COLETAR DADOS DO FORMULÁRIO
+    // O ID "protocoloForm" foi adicionado na tag <form> do index.html
     const form = document.getElementById('protocoloForm');
     
     // Verificação simples dos campos obrigatórios
@@ -35,7 +36,7 @@ function gerarProtocoloPDF(event) {
 
     const protocolo = `PRT-${dataFormatada}-${numAleatorio}`;
 
-    // 3. CONSTRUIR O CONTEÚDO DO PDF COM ESTRUTURA SIMPLIFICADA (MENOS CHANCE DE TRAVAR)
+    // 3. CONSTRUIR O CONTEÚDO DO PDF COM ESTRUTURA SIMPLIFICADA (Mais confiável para jsPDF)
     const conteudoPDF = `
         <div style="padding: 20px; font-family: Arial, sans-serif;">
             <h1 style="color: #003366;">Comprovante de Denúncia - Fiscalize Aqui</h1>
@@ -49,9 +50,9 @@ function gerarProtocoloPDF(event) {
                 Detalhes da Ocorrência
             </h3>
             
-            <p><strong>Nome do Cidadão:</strong> ${nome}</p>
+            <p><strong>Nome:</strong> ${nome}</p>
             <p><strong>E-mail:</strong> ${email}</p>
-            <p><strong>Tipo de Ocorrência:</strong> ${tipoProblema}</p>
+            <p><strong>Tipo:</strong> ${tipoProblema}</p>
             <p><strong>Endereço:</strong> ${endereco}</p>
 
             <h3 style="color: #004080; margin-top: 20px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">
@@ -61,7 +62,7 @@ function gerarProtocoloPDF(event) {
 
             <div style="background-color: #f0f8ff; border-left: 5px solid #007bff; padding: 15px; margin-top: 30px;">
                 <p style="font-weight: bold;">MENSAGEM IMPORTANTE:</p>
-                <p>O seu protocolo foi gerado com sucesso! Utilize o NÚMERO DE PROTOCOLO acima para acompanhar o status no nosso Dashboard. O prazo de análise inicial é de 7 dias úteis.</p>
+                <p>O seu protocolo foi gerado com sucesso! Utilize o NÚMERO DE PROTOCOLO acima para acompanhar o status no Dashboard. O prazo de análise inicial é de 7 dias úteis.</p>
                 <p>Agradecemos sua colaboração com o ODS 16.</p>
             </div>
             <p style="font-size: 0.8em; text-align: center; margin-top: 20px;">
@@ -74,11 +75,10 @@ function gerarProtocoloPDF(event) {
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF('p', 'mm', 'a4'); 
 
-    // Dispara o alerta para dar feedback imediato
+    // Dispara o pop-up de confirmação imediata
     alert(`Protocolo Gerado com Sucesso! Seu número é: ${protocolo}. O PDF será baixado em instantes.`);
     
-    // Processo de renderização do HTML no PDF
-    // Usamos um timeout de 5s para garantir que a renderização do HTML termine
+    // Processo de renderização do HTML no PDF (assíncrono)
     doc.html(conteudoPDF, {
         callback: function (doc) {
             // ESSENCIAL: Salva o PDF somente após a renderização completa.
@@ -99,15 +99,16 @@ function gerarProtocoloPDF(event) {
 
 
 // =================================================================
-// 2. VINCULAR A FUNÇÃO AO FORMULÁRIO
+// 2. VINCULAR A FUNÇÃO AO FORMULÁRIO (Listener)
 // =================================================================
 
+// Espera o HTML carregar completamente antes de tentar encontrar o formulário
 document.addEventListener('DOMContentLoaded', () => {
-    // Encontra o formulário pelo ID que definimos
+    // Encontra o formulário pelo ID
     const form = document.getElementById('protocoloForm');
     
     if (form) {
-        // Adiciona o listener de submissão
+        // Adiciona o listener de submissão (acusa quando o botão submit é clicado)
         form.addEventListener('submit', gerarProtocoloPDF);
     }
 });
