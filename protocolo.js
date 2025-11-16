@@ -1,5 +1,5 @@
 // =================================================================
-// 1. FUNÇÃO PRINCIPAL: CHAMADA AO ENVIAR O FORMULÁRIO
+// 1. FUNÇÃO PRINCIPAL: CHAMA A GERAÇÃO DO PDF AO SUBMETER O FORMULÁRIO
 // =================================================================
 
 function gerarProtocoloPDF(event) {
@@ -7,7 +7,6 @@ function gerarProtocoloPDF(event) {
     event.preventDefault();
 
     // 1. COLETAR DADOS DO FORMULÁRIO
-    // O ID "protocoloForm" foi adicionado na tag <form> do index.html
     const form = document.getElementById('protocoloForm');
     
     // Verificação simples dos campos obrigatórios
@@ -18,7 +17,6 @@ function gerarProtocoloPDF(event) {
 
     const nome = form.querySelector('input[placeholder="Seu Nome Completo"]').value;
     const email = form.querySelector('input[type="email"]').value;
-    // Pega o texto da opção selecionada
     const tipoProblema = form.querySelector('select').options[form.querySelector('select').selectedIndex].text;
     const endereco = form.querySelector('input[placeholder="Endereço Exato do Problema e Ponto de Referência *"]').value;
     const detalhes = form.querySelector('textarea').value;
@@ -31,12 +29,10 @@ function gerarProtocoloPDF(event) {
         data.getFullYear()
     ].join('');
     
-    // Gera um número aleatório de 6 dígitos
     const numAleatorio = Math.floor(100000 + Math.random() * 900000); 
-
     const protocolo = `PRT-${dataFormatada}-${numAleatorio}`;
 
-    // 3. CONSTRUIR O CONTEÚDO DO PDF COM ESTRUTURA SIMPLIFICADA (Mais confiável para jsPDF)
+    // 3. CONSTRUIR O CONTEÚDO DO PDF COM ESTRUTURA SIMPLIFICADA 
     const conteudoPDF = `
         <div style="padding: 20px; font-family: Arial, sans-serif;">
             <h1 style="color: #003366;">Comprovante de Denúncia - Fiscalize Aqui</h1>
@@ -96,3 +92,18 @@ function gerarProtocoloPDF(event) {
     // Limpa o formulário
     form.reset(); 
 }
+
+
+// =================================================================
+// 2. VINCULAR A FUNÇÃO AO FORMULÁRIO (Listener que estava faltando)
+// =================================================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Encontra o formulário pelo ID
+    const form = document.getElementById('protocoloForm');
+    
+    if (form) {
+        // Adiciona o listener de submissão
+        form.addEventListener('submit', gerarProtocoloPDF);
+    }
+});
