@@ -413,3 +413,99 @@ nav a:not(.active) {
     margin: 20px auto; /* Mantém a margem de cima/baixo, mas auto nas laterais */
     padding: 15px;
 }
+/* --- ESTILO PARA INDICADORES DE STATUS NA TABELA (Dashboard) --- */
+
+/* 1. Definindo o visual do indicador (o círculo) */
+.status-indicator {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.5); /* Efeito de borda */
+    animation: none; /* Inicia sem animação, será ativada por classes específicas */
+}
+
+/* 2. Definindo a animação de pulsação */
+@keyframes pulse-status {
+    0% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.8; }
+}
+
+/* 3. Estilos e Cores para os diferentes Status */
+
+/* EM ANÁLISE (Amarelo - Precisa de Atenção) */
+.em-analise .status-indicator {
+    background-color: #FFC107; /* Cor Laranja/Amarela */
+    box-shadow: 0 0 5px #FFC107;
+    animation: pulse-status 1.5s infinite; /* Ativa a pulsação */
+}
+.em-analise { color: #FFC107; font-weight: bold; }
+
+
+/* EM ABERTO (Vermelho - Prioridade) */
+.em-aberto .status-indicator {
+    background-color: #dc3545; /* Cor Vermelha */
+    box-shadow: 0 0 5px #dc3545;
+    animation: pulse-status 1s infinite alternate; /* Pulsação mais rápida */
+}
+.em-aberto { color: #dc3545; font-weight: bold; }
+
+
+/* SOLUCIONADO (Verde - Finalizado) */
+.solucionado .status-indicator {
+    background-color: #28a745; /* Cor Verde */
+    box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.4); /* Sem pulsação, apenas estático */
+    animation: none; 
+}
+.solucionado { color: #28a745; font-weight: bold; }
+/* =================================================================
+// ESTILOS ESPECÍFICOS PARA MAPA DE COLETA (mapa_coleta.html)
+// ================================================================= */
+
+/* Contêiner que organiza os dois mapas lado a lado */
+.maps-container {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 30px;
+    padding: 20px 5%;
+    justify-content: center;
+}
+
+/* Define a área de cada mapa (ocupa quase metade da largura) */
+.map-frame {
+    flex: 1 1 45%; 
+    min-width: 300px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+/* Estilo do título de cada mapa (Header) */
+.map-frame h3 {
+    background-color: #004080;
+    color: white;
+    padding: 10px;
+    margin: 0;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+/* Estilo do Iframe (o mapa em si) */
+.map-frame iframe {
+    width: 100%;
+    height: 400px; /* Altura padrão para o mapa */
+    border: none;
+    display: block;
+}
+
+/* Estilo do Banner no topo da página de mapas */
+#mapa-coleta {
+    background-color: #385c80; /* Fundo cinza claro */
+    background-image: none;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+}

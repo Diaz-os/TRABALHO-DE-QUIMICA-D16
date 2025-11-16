@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <title>Fiscalize Aqui - Mapa de Coleta de Lixo</title>
+    <meta name="description" content="Mapa e horários da coleta de lixo comum e seletiva em Cascavel, promovendo a transparência e informação (ODS 16).">
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .maps-container {
+            display: flex;
+            flex-wrap: wrap; /* Permite que os mapas quebrem a linha em telas pequenas */
+            gap: 30px;
+            padding: 20px 5%;
+            justify-content: center;
+        }
+        .map-frame {
+            flex: 1 1 45%; /* Garante que cada mapa ocupe quase metade da largura */
+            min-width: 300px; /* Largura mínima para telas pequenas */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #fff;
+        }
+        .map-frame h3 {
+            background-color: #004080;
+            color: white;
+            padding: 10px;
+            margin: 0;
+            text-align: center;
+        }
+        .map-frame iframe {
+            width: 100%;
+            height: 400px; /* Altura padrão para o mapa */
+            border: none;
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <header>
+        <div class="logo">
+            <h3>FISCALIZE AQUI</h3>
+        </div>
+        <nav>
+            <a href="index.html#inicio">Início</a>
+            <a href="index.html#ocorrencias">Reportar</a>
+            <a href="index.html#acompanhamento">Acompanhamento</a>
+            <a href="relatos.html">Relatos de Impacto</a> 
+            <a href="mapa_coleta.html" class="active-nav">Mapa de Coleta</a> <a href="index.html#sobre">Sobre ODS 16</a>
+        </nav>
+    </header>
+
+    <section class="hero" id="mapa-coleta" style="padding-top: 150px; padding-bottom: 50px; background-image: none; background-color: rgb(7, 35, 52);">
+        <h1>Mapa de Coleta de Lixo em Cascavel</h1>
+        <h3>Informação Pública para Instituições Eficazes (ODS 16).</h3>
+        <p>Consulte os horários e rotas de coleta para garantir o descarte correto e a limpeza do seu bairro.</p>
+    </section>
+
+    <section>
+        <div class="maps-container">
+            
+            <div class="map-frame">
+                <h3>Lixo Comum (Rotas e Horários)</h3>
+                <iframe src="https://www.google.com/maps/d/u/0/viewer?mid=103uVVOchRJEfSr_WQVr1-1icw_tTa48&femb=1&ll=-24.954619997924524%2C-53.44868585000002&z=12" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <div class="map-frame">
+                <h3>Lixo Seletivo (Reciclagem)</h3>
+                <iframe src="https://www.google.com/maps/d/u/0/viewer?mid=10Zc2rXuf9c5DYDpXL5IqEW01LEf85z5c&femb=1&ll=-24.957825326786015%2C-53.46258602652153&z=13" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            
+        </div>
+        
+        <div style="text-align: center; padding: 20px;">
+            <p>Se o mapa não carregar ou houver dúvidas, consulte a prefeitura de Cascavel.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p style="text-align: center; margin: 0;">Protótipo desenvolvido para avaliação do 3º trimestre - ODS 16 (Paz, Justiça e Instituições Eficazes).</p>
+    </footer>
+
+</body>
+</html>
