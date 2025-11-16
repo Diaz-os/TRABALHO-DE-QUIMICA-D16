@@ -96,19 +96,3 @@ function gerarProtocoloPDF(event) {
     // Limpa o formulário
     form.reset(); 
 }
-
-
-// =================================================================
-// 2. VINCULAR A FUNÇÃO AO FORMULÁRIO (Listener)
-// =================================================================
-
-// Espera o HTML carregar completamente antes de tentar encontrar o formulário
-document.addEventListener('DOMContentLoaded', () => {
-    // Encontra o formulário pelo ID
-    const form = document.getElementById('protocoloForm');
-    
-    if (form) {
-        // Adiciona o listener de submissão (acusa quando o botão submit é clicado)
-        form.addEventListener('submit', gerarProtocoloPDF);
-    }
-});

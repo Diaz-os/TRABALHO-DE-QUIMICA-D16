@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="style.css">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="protocolo.js" defer></script> 
+    <script src="protocolo.js"></script> 
 </head>
 
 <body>
@@ -135,6 +135,17 @@
     <footer>
         <p style="text-align: center; margin: 0;">Protótipo desenvolvido para avaliação do 3º trimestre - ODS 16 (Paz, Justiça e Instituições Eficazes).</p>
     </footer>
+<footer>
+        </footer>
 
+    <script>
+        // Vincula a função ao formulário após o HTML ter sido completamente carregado
+        const form = document.getElementById('protocoloForm');
+        if (form) {
+            form.addEventListener('submit', gerarProtocoloPDF);
+        }
+    </script>
+</body>
+</html>
 </body>
 </html>
