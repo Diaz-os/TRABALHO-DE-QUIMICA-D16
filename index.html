@@ -63,27 +63,26 @@
     <section class="form-section" id="ocorrencias">
         <h2>Reportar Ocorrência</h2>
         <form>
-            <input type="text" placeholder="Seu Nome Completo" required>
-            <input type="email" placeholder="Seu E-mail para Contato (Opcional)">
-            
-            <select required>
-                <option value="">-- Selecione o Tipo de Problema * --</option>
-                <option value="buraco">Buraco na Rua / Asfalto Danificado</option>
-                <option value="lixo">Lixo ou Entulho Acumulado</option>
-                <option value="iluminacao">Lâmpada de Poste Queimada</option>
-                <option value="bueiro">Bueiro Entupido / Drenagem</option>
-                <option value="outro">Outro Problema de Infraestrutura</option>
+            <section class="form-section" id="ocorrencias">
+    <h2>Reportar Ocorrência</h2>
+    <form id="protocoloForm">
+        <input type="text" placeholder="Seu Nome Completo" required>
+        <input type="email" placeholder="Seu E-mail para Contato (Opcional)">
+        
+        <select required>
+            <option value="">-- Selecione o Tipo de Problema * --</option>
             </select>
-            
-            <input type="text" placeholder="Endereço Exato do Problema e Ponto de Referência *" required>
-            
-            <textarea placeholder="Descreva o problema com o máximo de detalhes." rows="4" required></textarea>
-            
-            <label style="display: block; margin-bottom: 15px;">
-                <input type="file" style="border: none;"> Anexar Foto (Recomendado)
-            </label>
+        
+        <input type="text" placeholder="Endereço Exato do Problema e Ponto de Referência *" required>
+        
+        <textarea placeholder="Descreva o problema com o máximo de detalhes." rows="4" required></textarea>
+        
+        <label style="display: block; margin-bottom: 15px;">
+            <input type="file" style="border: none;"> Anexar Foto (Recomendado)
+        </label>
 
-            <button type="submit">ENVIAR DENÚNCIA E GERAR PROTOCOLO</button>
+        <button type="submit">ENVIAR DENÚNCIA E GERAR PROTOCOLO</button>
+    </form> </section>
         </form>
     </section>
 
@@ -138,4 +137,5 @@
     </footer>
 
 </body>
+
 </html>
