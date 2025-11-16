@@ -60,18 +60,18 @@
         </div>
     </section>
 
-    <section class="form-section" id="ocorrencias">
-        <h2>Reportar Ocorrência</h2>
-        <form>
-            <section class="form-section" id="ocorrencias">
+   <section class="form-section" id="ocorrencias">
     <h2>Reportar Ocorrência</h2>
+    
     <form id="protocoloForm">
         <input type="text" placeholder="Seu Nome Completo" required>
         <input type="email" placeholder="Seu E-mail para Contato (Opcional)">
         
         <select required>
             <option value="">-- Selecione o Tipo de Problema * --</option>
-            </select>
+            <option value="buraco">Buraco na Rua / Asfalto Danificado</option>
+            <option value="lixo">Lixo ou Entulho Acumulado</option>
+        </select>
         
         <input type="text" placeholder="Endereço Exato do Problema e Ponto de Referência *" required>
         
@@ -82,9 +82,10 @@
         </label>
 
         <button type="submit">ENVIAR DENÚNCIA E GERAR PROTOCOLO</button>
-    </form> </section>
-        </form>
-    </section>
+        
+    </form> </section> ```
+
+A parte **`form id="protocoloForm"`** **está correta e é essencial** para o JavaScript do PDF. Apenas certifique-se de que não haja tags `</form>` soltas ou repetidas.
 
     <section id="acompanhamento">
         <h2>Dashboard de Transparência (ODS 16)</h2>
@@ -139,3 +140,4 @@
 </body>
 
 </html>
+
