@@ -353,4 +353,63 @@ body, html {
     
     /* ... [Todas as regras específicas para celular que te enviei] ... */
 
+}/* DENTRO do bloco @media (max-width: 768px) { ... } */
+
+/* A. CABEÇALHO (HEADER) - Ajusta o menu para telas pequenas */
+header {
+    flex-direction: column; /* Empilha logo e menu verticalmente */
+    padding: 15px 1%; /* Reduz o padding lateral para ganhar espaço */
+}
+
+header .logo {
+    margin-bottom: 8px; /* Espaço menor abaixo do logo */
+}
+
+nav {
+    margin-top: 5px;
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    max-width: 100%; /* Garante que a nav não vaze */
+}
+
+nav a {
+    /* Diminui o tamanho da fonte e o espaçamento para caber mais */
+    font-size: 0.8em; 
+    padding: 5px 6px; 
+    margin: 3px 4px; 
+    border-bottom: none; /* Remove a borda para economizar espaço vertical */
+    white-space: nowrap; /* Impede que o texto de um botão quebre */
+}
+
+/* Opcional: Adiciona um fundo para os botões no mobile para separá-los */
+nav a:not(.active) {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+/* DENTRO do bloco @media (max-width: 768px) { ... } */
+
+/* E. TABELAS (DASHBOARD) - Torna a tabela horizontalmente rolavel */
+#acompanhamento {
+    /* O container da seção permite a rolagem */
+    overflow-x: auto; 
+    padding: 20px 0; /* Remove padding lateral da seção para que a rolagem comece na borda */
+}
+
+.status-table {
+    /* Garante uma largura mínima, forçando a rolagem horizontal */
+    min-width: 700px; 
+    border-spacing: 0 5px;
+    margin: 0 auto; /* Centraliza a tabela na rolagem */
+}
+
+.status-table th, .status-table td {
+    padding: 8px 10px; /* Reduz o padding interno das células */
+    font-size: 0.8em; /* Fonte menor para caber mais texto */
+}
+
+/* F. RELATOS (RELATOS.HTML) - Correção de margem */
+.relatos-container {
+    margin: 20px auto; /* Mantém a margem de cima/baixo, mas auto nas laterais */
+    padding: 15px;
 }
