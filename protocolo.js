@@ -1,5 +1,6 @@
 // =================================================================
-// 1. FUNÇÃO PRINCIPAL: CHAMA A GERAÇÃO DO PDF AO SUBMETER O FORMULÁRIO
+// ARQUIVO: protocolo.js
+// FUNÇÃO: Gera um número de protocolo único e baixa um PDF do comprovante.
 // =================================================================
 
 function gerarProtocoloPDF(event) {
@@ -11,6 +12,7 @@ function gerarProtocoloPDF(event) {
     
     // Verificação simples dos campos obrigatórios
     if (!form.checkValidity()) {
+        // A função alert() já é executada pelo navegador se o campo for required, mas deixamos aqui como fallback
         alert("Por favor, preencha todos os campos obrigatórios.");
         return;
     }
@@ -29,10 +31,12 @@ function gerarProtocoloPDF(event) {
         data.getFullYear()
     ].join('');
     
+    // Gera um número aleatório de 6 dígitos
     const numAleatorio = Math.floor(100000 + Math.random() * 900000); 
+
     const protocolo = `PRT-${dataFormatada}-${numAleatorio}`;
 
-    // 3. CONSTRUIR O CONTEÚDO DO PDF COM ESTRUTURA SIMPLIFICADA 
+    // 3. CONSTRUIR O CONTEÚDO DO PDF (Simplificado para maior confiabilidade)
     const conteudoPDF = `
         <div style="padding: 20px; font-family: Arial, sans-serif;">
             <h1 style="color: #003366;">Comprovante de Denúncia - Fiscalize Aqui</h1>
@@ -77,15 +81,16 @@ function gerarProtocoloPDF(event) {
     // Processo de renderização do HTML no PDF (assíncrono)
     doc.html(conteudoPDF, {
         callback: function (doc) {
-            // ESSENCIAL: Salva o PDF somente após a renderização completa.
+            // Este bloco SÓ é executado se a renderização for bem-sucedida.
             doc.save(`${protocolo}.pdf`); 
         },
         x: 10,
         y: 10,
         width: 180, 
-        windowWidth: 650, 
+        windowWidth: 850, // Largura simulada (ajustado para ser mais robusto)
         html2canvas: {
-            timeout: 5000 // Aumenta o limite de tempo para renderizar
+            timeout: 5000, // 5 segundos de limite para renderizar
+            useCORS: true // Essencial para sites hospedados (GitHub Pages)
         }
     });
     
@@ -95,15 +100,16 @@ function gerarProtocoloPDF(event) {
 
 
 // =================================================================
-// 2. VINCULAR A FUNÇÃO AO FORMULÁRIO (Listener que estava faltando)
+// 5. VINCULAR A FUNÇÃO AO FORMULÁRIO (Listener)
 // =================================================================
 
+// Espera o HTML carregar completamente antes de tentar encontrar o formulário (ID)
 document.addEventListener('DOMContentLoaded', () => {
     // Encontra o formulário pelo ID
     const form = document.getElementById('protocoloForm');
     
     if (form) {
-        // Adiciona o listener de submissão
+        // Adiciona o listener de submissão.
         form.addEventListener('submit', gerarProtocoloPDF);
     }
 });
