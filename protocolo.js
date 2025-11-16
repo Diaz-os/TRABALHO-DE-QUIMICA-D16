@@ -1,22 +1,19 @@
 // =================================================================
-// ARQUIVO: protocolo.js
-// FUNÇÃO: Gera um número de protocolo único e baixa um PDF do comprovante.
+// ARQUIVO: protocolo.js (Versão Final e Funcional com doc.text)
 // =================================================================
 
 function gerarProtocoloPDF(event) {
-    // ESSENCIAL: Impede o envio padrão do formulário (que recarregaria a página)
+    // ESSENCIAL: Impede o envio padrão do formulário
     event.preventDefault();
 
-    // 1. COLETAR DADOS DO FORMULÁRIO
     const form = document.getElementById('protocoloForm');
     
-    // Verificação simples dos campos obrigatórios
     if (!form.checkValidity()) {
-        // A função alert() já é executada pelo navegador se o campo for required, mas deixamos aqui como fallback
         alert("Por favor, preencha todos os campos obrigatórios.");
         return;
     }
 
+    // 1. COLETAR DADOS DO FORMULÁRIO
     const nome = form.querySelector('input[placeholder="Seu Nome Completo"]').value;
     const email = form.querySelector('input[type="email"]').value;
     const tipoProblema = form.querySelector('select').options[form.querySelector('select').selectedIndex].text;
@@ -31,85 +28,85 @@ function gerarProtocoloPDF(event) {
         data.getFullYear()
     ].join('');
     
-    // Gera um número aleatório de 6 dígitos
     const numAleatorio = Math.floor(100000 + Math.random() * 900000); 
-
     const protocolo = `PRT-${dataFormatada}-${numAleatorio}`;
 
-    // 3. CONSTRUIR O CONTEÚDO DO PDF (Simplificado para maior confiabilidade)
-    const conteudoPDF = `
-        <div style="padding: 20px; font-family: Arial, sans-serif;">
-            <h1 style="color: #003366;">Comprovante de Denúncia - Fiscalize Aqui</h1>
-            
-            <p style="font-size: 1.2em; font-weight: bold;">
-                NÚMERO DE PROTOCOLO: <span style="color: #dc3545;">${protocolo}</span>
-            </p>
-            <p><strong>Data/Hora do Registro:</strong> ${data.toLocaleString('pt-BR')}</p>
-            
-            <h3 style="color: #004080; margin-top: 20px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">
-                Detalhes da Ocorrência
-            </h3>
-            
-            <p><strong>Nome:</strong> ${nome}</p>
-            <p><strong>E-mail:</strong> ${email}</p>
-            <p><strong>Tipo:</strong> ${tipoProblema}</p>
-            <p><strong>Endereço:</strong> ${endereco}</p>
-
-            <h3 style="color: #004080; margin-top: 20px; border-bottom: 1px solid #ddd; padding-bottom: 5px;">
-                Descrição
-            </h3>
-            <p>${detalhes}</p>
-
-            <div style="background-color: #f0f8ff; border-left: 5px solid #007bff; padding: 15px; margin-top: 30px;">
-                <p style="font-weight: bold;">MENSAGEM IMPORTANTE:</p>
-                <p>O seu protocolo foi gerado com sucesso! Utilize o NÚMERO DE PROTOCOLO acima para acompanhar o status no Dashboard. O prazo de análise inicial é de 7 dias úteis.</p>
-                <p>Agradecemos sua colaboração com o ODS 16.</p>
-            </div>
-            <p style="font-size: 0.8em; text-align: center; margin-top: 20px;">
-                *Este documento foi gerado automaticamente pela plataforma Fiscalize Aqui.
-            </p>
-        </div>
-    `;
-
-    // 4. CHAMAR A GERAÇÃO DO PDF
+    // =================================================================
+    // 3. CRIAÇÃO DO PDF USANDO TEXTO SIMPLES (Garantia de Download)
+    // =================================================================
     const { jsPDF } = window.jspdf;
     const doc = new jsPDF('p', 'mm', 'a4'); 
+    let y = 20; // Posição vertical inicial (20mm do topo)
+
+    // TÍTULO
+    doc.setFontSize(20);
+    doc.setTextColor(0, 51, 102); // Azul Escuro
+    doc.text("Comprovante de Denúncia - Fiscalize Aqui", 15, y);
+    y += 10;
+
+    // PROTOCOLO
+    doc.setFontSize(14);
+    doc.setTextColor(51, 51, 51);
+    doc.text(`NÚMERO DE PROTOCOLO: ${protocolo}`, 15, y);
+    y += 8;
+
+    doc.setFontSize(10);
+    doc.text(`Data/Hora do Registro: ${data.toLocaleString('pt-BR')}`, 15, y);
+    y += 15;
+
+    // DETALHES DO CIDADÃO
+    doc.setFontSize(12);
+    doc.text("--- Detalhes do Problema ---", 15, y);
+    y += 8;
+    
+    doc.text(`Nome do Cidadão: ${nome}`, 15, y);
+    y += 6;
+    doc.text(`E-mail: ${email}`, 15, y);
+    y += 6;
+    doc.text(`Tipo de Ocorrência: ${tipoProblema}`, 15, y);
+    y += 6;
+    doc.text(`Endereço: ${endereco}`, 15, y);
+    y += 15;
+
+    // DESCRIÇÃO
+    doc.setFontSize(12);
+    doc.text("--- Descrição Completa ---", 15, y);
+    y += 8;
+    
+    // Divide o texto da descrição em linhas para caber no PDF
+    const textLines = doc.splitTextToSize(detalhes, 180); 
+    doc.text(textLines, 15, y);
+    y += (textLines.length * 5) + 15; // Ajusta a posição Y baseada no número de linhas
+
+    // MENSAGEM FINAL
+    doc.setFontSize(10);
+    doc.setTextColor(0, 0, 0); 
+    doc.text("MENSAGEM IMPORTANTE:", 15, y);
+    y += 6;
+    const msg = "O seu protocolo foi gerado com sucesso! Utilize o NÚMERO DE PROTOCOLO acima para acompanhar o status no nosso Dashboard. O prazo de análise inicial é de 7 dias úteis. Agradecemos sua colaboração com o ODS 16.";
+    const msgLines = doc.splitTextToSize(msg, 180);
+    doc.text(msgLines, 15, y);
+    y += (msgLines.length * 5) + 10;
+
 
     // Dispara o pop-up de confirmação imediata
-    alert(`Protocolo Gerado com Sucesso! Seu número é: ${protocolo}. O PDF será baixado em instantes.`);
+    alert(`Protocolo Gerado com Sucesso! Seu número é: ${protocolo}. O PDF será baixado.`);
     
-    // Processo de renderização do HTML no PDF (assíncrono)
-    doc.html(conteudoPDF, {
-        callback: function (doc) {
-            // Este bloco SÓ é executado se a renderização for bem-sucedida.
-            doc.save(`${protocolo}.pdf`); 
-        },
-        x: 10,
-        y: 10,
-        width: 180, 
-        windowWidth: 850, // Largura simulada (ajustado para ser mais robusto)
-        html2canvas: {
-            timeout: 5000, // 5 segundos de limite para renderizar
-            useCORS: true // Essencial para sites hospedados (GitHub Pages)
-        }
-    });
+    // COMANDO DE DOWNLOAD GARANTIDO
+    doc.save(`${protocolo}.pdf`); 
     
-    // Limpa o formulário
     form.reset(); 
 }
 
 
 // =================================================================
-// 5. VINCULAR A FUNÇÃO AO FORMULÁRIO (Listener)
+// 4. VINCULAR A FUNÇÃO AO FORMULÁRIO (Listener)
 // =================================================================
 
-// Espera o HTML carregar completamente antes de tentar encontrar o formulário (ID)
 document.addEventListener('DOMContentLoaded', () => {
-    // Encontra o formulário pelo ID
     const form = document.getElementById('protocoloForm');
     
     if (form) {
-        // Adiciona o listener de submissão.
         form.addEventListener('submit', gerarProtocoloPDF);
     }
 });
