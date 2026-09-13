@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRF - Excelência e Segurança</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="tela-entrada">
+        <button id="btn-entrar">INICIAR SESSÃO</button>
+    </div>
+
+    <audio id="musica-fundo" loop>
+        <source src="musica.mp3" type="audio/mpeg">
+    </audio>
+    <button id="btn-audio">🔇</button>
+
+    <!-- BARRA DE NAVEGAÇÃO FIXA -->
+    <header id="barra-topo">
+        <div class="logo-nav">PRF <strong>BRASIL</strong></div>
+        <nav class="links-nav">
+            <a href="#secao-1">Missão</a>
+            <a href="#secao-2">Combate</a>
+            <a href="#secao-3">Resgate</a>
+        </nav>
+    </header>
+
+    <div id="cenarios-fixos">
+        <div class="cenario-bg ativo" id="bg-1"></div>
+        <div class="cenario-bg" id="bg-2"></div>
+        <div class="cenario-bg" id="bg-3"></div>
+    </div>
+
+    <main id="conteudo-rolagem">
+        
+        <section id="secao-1" class="secao-revelacao">
+            <div class="caixa-texto animar">
+                <h1>Polícia Rodoviária Federal</h1>
+                <p>A missão da PRF é garantir a segurança com cidadania nas rodovias federais e nas áreas de interesse da União. Uma instituição de excelência na pronta resposta federal, referência em inovação e em resultados para a sociedade.</p>
+            </div>
+        </section>
+
+        <section id="secao-2" class="secao-revelacao">
+            <div class="caixa-texto animar">
+                <h2>Combate ao Crime</h2>
+                <p>Além da fiscalização de trânsito, a PRF atua fortemente na segurança pública, executando o enfrentamento ao tráfico de drogas, contrabando, descaminho e outros crimes transfronteiriços, utilizando inteligência e tecnologia.</p>
+            </div>
+        </section>
+
+        <section id="secao-3" class="secao-revelacao">
+            <div class="caixa-texto animar">
+                <h2>Resgate e Prevenção</h2>
+                <p>Equipes especializadas atuam no pronto-atendimento em acidentes e na fiscalização de equipamentos de segurança, visando preservar vidas, reduzir a letalidade nas rodovias e garantir a ordem viária nacional.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="resto.js"></script>
+</body>
+</html>
